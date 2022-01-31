@@ -1,0 +1,20 @@
+server:
+  port: 9191
+
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: READ-PRODUCT-SERVICE
+          uri: lb://READ-PRODUCT-SERVICE
+          predicates:
+            - Method=GET
+            - Path=/products/**
+        - id: WRITE-PRODUCT-SERVICE
+          uri: lb://WRITE-PRODUCT-SERVICE
+          predicates:
+            - Method=POST
+            - Path=/products/**
